@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export const BudgetsProvider = ({children}) => {
-    const [budgets, setBudgets] = useState([]);
-    const [expenses, setExpenses] = useState([]);
+    const [budgets, setBudgets] = useLocalStorage('budgets', []);
+    const [expenses, setExpenses] = useLocalStorage('expenses', []);
 
     const getBudgetsExpenses = (budgetId) => {
         //get all expenses that have the same id, we'll use this to display the expenses for a given budget.
