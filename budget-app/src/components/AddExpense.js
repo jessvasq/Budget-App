@@ -2,12 +2,17 @@ import {React, useRef} from 'react';
 import { Form, Modal, Button } from 'react-bootstrap';
 import { uncategorizedBudgetId, useBudgets } from '../contexts/BudgetsContext';
 
-export default function AddExpense({  show, handleClose, defaultBudgetId }) {
+export default function AddExpense({  
+    show, 
+    handleClose, 
+    defaultBudgetId,
+ }) {
     //nameRef is a reference to the input field
     const descriptionRef = useRef();
     const amountRef = useRef();
     const budgetIdRef = useRef();
     const { addExpense, budgets } = useBudgets();
+
     const handleSubmit = (e) => {
         // Prevents page from refreshing
         e.preventDefault();
@@ -39,7 +44,7 @@ export default function AddExpense({  show, handleClose, defaultBudgetId }) {
 
                     <Form.Group className='mb-3' controlId='amount'>
                         <Form.Label> Amount </Form.Label>
-                        <Form.Control ref= {amountRef} type='number' placeholder='Enter amount' requiredmin={0} step={.01}/>
+                        <Form.Control ref= {amountRef} type='number' placeholder='Enter amount' requiredmin={0} step={0.01}/>
                     </Form.Group>
 
                     <Form.Group className='mb-3' controlId='budgetId'>

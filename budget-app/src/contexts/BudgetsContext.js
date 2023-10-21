@@ -1,6 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import useLocalStorage from '../hooks/useLocalStorage';
+
+
+//context allows us to pass data through the component tree without having to pass props down manually at every level.
+const BudgetsContext = React.createContext();
+
+
+export const uncategorizedBudgetId = 'uncategorized'
+
+export const useBudgets = () => { 
+    return useContext(BudgetsContext);
+}
 
 export const BudgetsProvider = ({children}) => {
     const [budgets, setBudgets] = useLocalStorage('budgets', []);
@@ -14,7 +25,7 @@ export const BudgetsProvider = ({children}) => {
     const addExpense = ({description, amount, budgetId}) => {
          //the setBudgets function will update the budgets state variable by adding a new budget to the array
          setExpenses(prevExpense => {
-            return [...prevExpense, {id:uuidV4, description, amount, budgetId }]
+            return [...prevExpense, {id:uuidV4(), description, amount, budgetId }]
         })
     };
 
@@ -25,11 +36,17 @@ export const BudgetsProvider = ({children}) => {
             if (prevBudgets.find(budget => budget.name === name)) {
             return prevBudgets;
                 }
-            return [...prevBudgets, {id:uuidV4, name, max }]
+            return [...prevBudgets, {id:uuidV4(), name, max }]
         })
     };
 
     const deleteBudget = ({id}) => {
+        setExpenses(prevExpenses => {
+            return prevExpenses.map(expense => {
+                if(expense.budgetId !== id) return expense
+                return { ...expense, budgetId:uncategorizedBudgetId }
+            })
+        })
         setBudgets(prevBudgets => {
             // We're going to return all budgets that don't have the id that we're trying to delete. So all the items that do not match the uuid that we're trying to delete will stay, and the one that does match will be removed.
             return prevBudgets.filter(budget => budget.id !== id)
@@ -43,7 +60,9 @@ export const BudgetsProvider = ({children}) => {
         })
     };
 
-    return <BudgetsContext.Provider value={{
+    return (
+    <BudgetsContext.Provider 
+    value={{
         //functions we'll use to interact with the data
         budgets, 
         expenses, 
@@ -52,15 +71,10 @@ export const BudgetsProvider = ({children}) => {
         addBudget,
         deleteBudget,
         deleteExpense,
-    }}>{children}</BudgetsContext.Provider>
-};
-
-//context allows us to pass data through the component tree without having to pass props down manually at every level.
-const BudgetsContext = React.createContext();
-
-export const useBudgets = () => { 
-    return useContext(BudgetsContext);
-}
+    }}
+    >
+        {children}
+    </BudgetsContext.Provider>
+)};
 
 
-export const uncategorizedBudgetId = 'uncategorized'

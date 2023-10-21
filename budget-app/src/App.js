@@ -3,11 +3,11 @@ import './App.css';
 import BudgetCard from './components/BudgetCard';
 import AddBudget from './components/AddBudget';
 import {React, useState} from 'react';
-import { useBudgets } from './contexts/BudgetsContext';
+import { uncategorizedBudgetId, useBudgets } from './contexts/BudgetsContext';
 import AddExpense from './components/AddExpense';
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard';
 import TotalBudgetCard from './components/TotalBudgetCard';
-
+import ViewExpenses from './components/ViewExpenses';
 
 function App() {
   // We'll use React.useState to keep track of whether the modal is open or not, by default it's false/closed
@@ -19,6 +19,8 @@ function App() {
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
   //keep track of the budget id that we're adding an expense to
   const [addExpenseBudgetId, setAddExpenseBudgetId] = useState();
+
+  const [viewExpensesBudgetId, setViewExpensesBudgetId] = useState();
 
   const OpenAddExpenseModal = (budgetId) => {
     //set the state of showAddExpenseModal to true, which will open the modal
@@ -48,17 +50,22 @@ function App() {
 
         return(
         <BudgetCard 
+          key={budget.id}
           name={budget.name} 
-          amount={0} 
+          amount={amount} 
           max={budget.max}
-          //we'll pass in the budget id to the OpenAddExpenseModal function
-          OpenAddExpenseModal={() => OpenAddExpenseModal(budget.id)}
+          
+          onAddExpenseClick={() => OpenAddExpenseModal(budget.id)}
+          onViewExpenseClick ={() => setViewExpensesBudgetId(budget.id)}
         /> 
         )
       })
         }
       {/* onAddExpenseClick will open the popup 'add expense' modal with the uncategorized budget as default */}
-     <UncategorizedBudgetCard onAddExpenseClick={OpenAddExpenseModal}/>
+     <UncategorizedBudgetCard 
+     onAddExpenseClick={OpenAddExpenseModal}
+     onViewExpenseClick={() => setViewExpensesBudgetId(uncategorizedBudgetId)}
+     />
       <TotalBudgetCard />
       
     </div>
@@ -67,10 +74,15 @@ function App() {
   <AddBudget 
   show={showAddBudgetModal} 
   handleClose={() => setShowAddBudgetModal(false)}/>
+
   <AddExpense 
   show={showAddExpenseModal} 
   defaultBudgetId= {addExpenseBudgetId} 
   handleClose={() => setShowAddExpenseModal(false)}/>
+
+  <ViewExpenses 
+    budgetId={viewExpensesBudgetId} 
+    handleClose={() => setViewExpensesBudgetId()}/>
   </>
   )
 }
