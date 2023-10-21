@@ -20,18 +20,23 @@ export default function BudgetCard({name, amount, max, gray, onAddExpenseClick})
                 {/* we'll use a function to format the inpu to dollars. */}
                 <div className='d-flex align-items-baseline'>
                   <div>{currencyFormatter.format(amount)} 
-                    <span className='text-muted fs-6 ms-1'>
+                  {/* if there's a max, we'll display the max */}
+                    {max && (<span className='text-muted fs-6 ms-1'>
                       / {currencyFormatter.format(max)} 
                     </span>
+                    )}
                   </div>
                 </div>
             </CardTitle>
             
-            <ProgressBar className='rounded-pill' variant={getProgressBarVariant(amount, max)}
+            {/* only render the progress bar if there's a max */}
+            {max &&
+            (<ProgressBar className='rounded-pill' variant={getProgressBarVariant(amount, max)}
             min={0}
             max={max}
             now={amount}
             />
+            )}
             <Stack direction='horizontal' gap='2' className='mt-4'>
               <Button variant='outline-primary' className='ms-auto'  onClick={onAddExpenseClick}> Add Expenses</Button>
               <Button variant='outline-secondary' className='ms-auto'>View Expenses</Button>

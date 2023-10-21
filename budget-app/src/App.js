@@ -5,6 +5,7 @@ import AddBudget from './components/AddBudget';
 import {React, useState} from 'react';
 import { useBudgets } from './contexts/BudgetsContext';
 import AddExpense from './components/AddExpense';
+import UncategorizedBudgetCard from './components/UncategorizedBudgetCard';
 
 
 function App() {
@@ -54,7 +55,9 @@ function App() {
         /> 
         )
       })
-        };
+        }
+
+      <UncategorizedBudgetCard />
       
     </div>
   </Container>
