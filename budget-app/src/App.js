@@ -6,6 +6,7 @@ import {React, useState} from 'react';
 import { useBudgets } from './contexts/BudgetsContext';
 import AddExpense from './components/AddExpense';
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard';
+import TotalBudgetCard from './components/TotalBudgetCard';
 
 
 function App() {
@@ -56,8 +57,9 @@ function App() {
         )
       })
         }
-
-      <UncategorizedBudgetCard />
+      {/* onAddExpenseClick will open the popup 'add expense' modal with the uncategorized budget as default */}
+     <UncategorizedBudgetCard onAddExpenseClick={OpenAddExpenseModal}/>
+      <TotalBudgetCard />
       
     </div>
   </Container>

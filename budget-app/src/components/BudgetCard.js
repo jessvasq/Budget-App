@@ -2,7 +2,13 @@ import React from 'react';
 import { Button, Card, ProgressBar, Stack, CardBody, CardTitle} from 'react-bootstrap';
 import { currencyFormatter } from '../utils';
 
-export default function BudgetCard({name, amount, max, gray, onAddExpenseClick}) {
+export default function BudgetCard({
+  name, 
+  amount, 
+  max, 
+  gray, 
+  hideButtons,
+  onAddExpenseClick}) {
   const classNames = []
   if (amount > max) {
     classNames.push('bg-danger', 'bg-opacity-10')
@@ -37,10 +43,13 @@ export default function BudgetCard({name, amount, max, gray, onAddExpenseClick})
             now={amount}
             />
             )}
+            {/* if hideButtons is false, we'll render the buttons */}
+            {!hideButtons && (
             <Stack direction='horizontal' gap='2' className='mt-4'>
               <Button variant='outline-primary' className='ms-auto'  onClick={onAddExpenseClick}> Add Expenses</Button>
               <Button variant='outline-secondary' className='ms-auto'>View Expenses</Button>
             </Stack>
+            )}
         </CardBody>
     </Card>
   )
