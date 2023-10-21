@@ -61,3 +61,6 @@ const BudgetsContext = React.createContext();
 export const useBudgets = () => { 
     return useContext(BudgetsContext);
 }
+
+
+export const uncategorizedBudgetId = 'uncategorized'

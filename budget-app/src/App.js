@@ -4,6 +4,7 @@ import BudgetCard from './components/BudgetCard';
 import AddBudget from './components/AddBudget';
 import {React, useState} from 'react';
 import { useBudgets } from './contexts/BudgetsContext';
+import AddExpense from './components/AddExpense';
 
 
 function App() {
@@ -12,6 +13,18 @@ function App() {
   // We'll use the useBudgets hook to get the budgets from the BudgetsContext
   const {budgets, getBudgetsExpenses} = useBudgets();
 
+  //keep track to see if the add expense modal is open or not
+  const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
+  //keep track of the budget id that we're adding an expense to
+  const [addExpenseBudgetId, setAddExpenseBudgetId] = useState();
+
+  const OpenAddExpenseModal = (budgetId) => {
+    //set the state of showAddExpenseModal to true, which will open the modal
+    setShowAddExpenseModal(true);
+    //set the state of addExpenseBudgetId to the budgetId that we're adding an expense to
+    setAddExpenseBudgetId(budgetId);
+  }
+
   return(
   <>
   <Container className='my-4'> 
@@ -19,7 +32,8 @@ function App() {
       <h1 className='me-auto'> Budgets </h1>  
       {/* onClick function will set the state of showAddBudgetModal to true, which will open the modal, so that whenever we click on the show modal we'll see the pop-up to add a new budget */}
       <Button variant='primary' onClick={()=> setShowAddBudgetModal(true)}> Add Buget </Button>
-      <Button variant='outline-primary'> Add Expense </Button>
+      {/*this button will open the add expense modal with the uncategorized budget as default */}
+      <Button variant='outline-primary' onClick={OpenAddExpenseModal}> Add Expense </Button>
     </Stack>
 
 
@@ -35,6 +49,8 @@ function App() {
           name={budget.name} 
           amount={0} 
           max={budget.max}
+          //we'll pass in the budget id to the OpenAddExpenseModal function
+          OpenAddExpenseModal={() => OpenAddExpenseModal(budget.id)}
         /> 
         )
       })
@@ -42,7 +58,14 @@ function App() {
       
     </div>
   </Container>
-  <AddBudget show={showAddBudgetModal} handleClose={() => setShowAddBudgetModal(false)}/>
+  {/* By default, the budget and expense modals are closed, so we won't see it until we click on the buttons to open it */}
+  <AddBudget 
+  show={showAddBudgetModal} 
+  handleClose={() => setShowAddBudgetModal(false)}/>
+  <AddExpense 
+  show={showAddExpenseModal} 
+  defaultBudgetId= {addExpenseBudgetId} 
+  handleClose={() => setShowAddExpenseModal(false)}/>
   </>
   )
 }
