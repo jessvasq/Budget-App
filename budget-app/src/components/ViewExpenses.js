@@ -7,7 +7,7 @@ import { currencyFormatter } from '../utils';
 
 export default function ViewExpenses({ budgetId, handleClose }) {
     const { getBudgetsExpenses, budgets, deleteBudget, deleteExpense } = useBudgets();
-
+    //we'll get the expenses for a specific budget by calling the getBudgetsExpenses function and passing in the budgetId
     const expenses = getBudgetsExpenses(budgetId)
 
     //this function will check for the budgetId and if it's uncategorized, we'll return the id of the uncategorized budget. If it's not uncategorized, we'll return the budgetId
@@ -31,11 +31,13 @@ export default function ViewExpenses({ budgetId, handleClose }) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {/* we'll loop through the expenses array and render a Stack for each expense. */ }
                     <Stack direction='vertical' gap='3'>
                         {expenses.map(expense => (
                             <Stack direction='horizontal' gap='2' key={expense.id}>
                                 <div className='me-auto fs-4'>{expense.description}</div>
                                 <div className='fs-5'>{currencyFormatter.format(expense.amount)}</div>
+                                {/* we'll add an onClick function to the delete button that will call the deleteExpense function and pass in the expense */}
                                 <Button onClick={() => deleteExpense(expense)} size='sm' variant='outline-danger'>
                                     &times;
                                 </Button>

@@ -50,18 +50,22 @@ function App() {
 
         return(
         <BudgetCard 
+        //we need to pass in the budget id so that we can open the view expenses modal for a specific budget      
           key={budget.id}
           name={budget.name} 
+          //we'll pass in the amount of expenses for a specific budget
           amount={amount} 
           max={budget.max}
-          
+          //this function will open the add expense modal with the budget id as default
           onAddExpenseClick={() => OpenAddExpenseModal(budget.id)}
+          // this function will open the view expenses modal with the budget id as default
           onViewExpenseClick ={() => setViewExpensesBudgetId(budget.id)}
         /> 
         )
       })
         }
       {/* onAddExpenseClick will open the popup 'add expense' modal with the uncategorized budget as default */}
+       {/*this function will open the view expenses modal with the uncategorized budget as default */}
      <UncategorizedBudgetCard 
      onAddExpenseClick={OpenAddExpenseModal}
      onViewExpenseClick={() => setViewExpensesBudgetId(uncategorizedBudgetId)}
