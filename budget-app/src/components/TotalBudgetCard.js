@@ -1,9 +1,11 @@
-import React from 'react';
+import {React} from 'react';
 import { useBudgets } from '../contexts/BudgetsContext';
 import BudgetCard from './BudgetCard';
 
 //we'll use the useBudgets hook to get the budgets from the BudgetsContext
-export default function TotalBudgetCard() {
+export default function TotalBudgetCard(  onViewExpenseClick ) {
+
+
     const { expenses, budgets } = useBudgets();
     //this function will take all the expenses, add all the amounts together, and return the total amount of expenses for a specific budget/category
     const amount = expenses.reduce(
@@ -15,6 +17,10 @@ export default function TotalBudgetCard() {
     if (max === 0) return null;
 
     return (
-        <BudgetCard amount={amount} name='Total' gray max={max} hideButtons />
+        <>
+
+            <BudgetCard amount={amount} name='Total' gray max={max} hideButtons />
+       
+        </>
     )
 };

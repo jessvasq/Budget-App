@@ -8,6 +8,8 @@ import AddExpense from './components/AddExpense';
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard';
 import TotalBudgetCard from './components/TotalBudgetCard';
 import ViewExpenses from './components/ViewExpenses';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function App() {
   // We'll use React.useState to keep track of whether the modal is open or not, by default it's false/closed
@@ -22,6 +24,9 @@ function App() {
 
   const [viewExpensesBudgetId, setViewExpensesBudgetId] = useState();
 
+  //date 
+  const [startDate, setStartDate] = useState(null);
+
   const OpenAddExpenseModal = (budgetId) => {
     //set the state of showAddExpenseModal to true, which will open the modal
     setShowAddExpenseModal(true);
@@ -33,7 +38,16 @@ function App() {
   <>
   <Container className='my-4'> 
     <Stack direction='horizontal' gap='2' className='mb-4'>
-      <h1 className='me-auto'> Budgets </h1>  
+      
+      <div id='date'  className='me-auto' >
+      <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} 
+      showIcon
+      dateFormat="MMMM, yyyy"
+      placeholderText='  Select Month'
+      owMonthYearPicker
+       />
+      </div>
+
       {/* onClick function will set the state of showAddBudgetModal to true, which will open the modal, so that whenever we click on the show modal we'll see the pop-up to add a new budget */}
       <Button variant='primary' onClick={()=> setShowAddBudgetModal(true)}> Add Buget </Button>
       {/*this button will open the add expense modal with the uncategorized budget as default */}

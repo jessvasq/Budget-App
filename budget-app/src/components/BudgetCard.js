@@ -46,6 +46,7 @@ export default function BudgetCard({
               now={amount}
               />
             )}
+            
             {/* if hideButtons is false, we'll render the buttons */}
             {!hideButtons && (
               <Stack direction='horizontal' gap='2' className='mt-4'>
