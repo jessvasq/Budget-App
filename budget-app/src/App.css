@@ -1,5 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'PT Serif', serif;
 }
 
 #grid-container {
@@ -12,4 +17,45 @@
 input{
   border: none;
   border-bottom: 1px solid;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+#body1 {
+  background-color: #1B1F3B;
+  height: 100vh;
+}
+
+#bttn-category {
+  background-color: #F58F29;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+}
+
+#bttn-category:hover {
+  background-color: white;
+  border: none;
+  text-transform: uppercase;
+  color: black;
+}
+
+#date {
+  margin-top: 80px;
+  justify-content: end;
+  font-size: 16px;
+  font-family: 'Merriweather', serif;
+}
+
+#card-bttn{ 
+  border: solid 1px grey;
+  color: black;
+  background-color: white;
+}
+
+#card-bttn:hover { 
+  border: solid 1px grey;
+  background-color:  #5F7470; 
+  color: white;
 }

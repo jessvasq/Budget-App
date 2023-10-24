@@ -1,5 +1,6 @@
 import { Container, Stack, Button} from 'react-bootstrap';
 import './App.css';
+import './index.css';
 import BudgetCard from './components/BudgetCard';
 import AddBudget from './components/AddBudget';
 import {React, useState} from 'react';
@@ -35,25 +36,22 @@ function App() {
   }
 
   return(
-  <>
-  <Container className='my-4'> 
+  <div id='body1'>
+  <Container> 
     <Stack direction='horizontal' gap='2' className='mb-4'>
       
       <div id='date'  className='me-auto' >
       <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} 
-      showIcon
       dateFormat="MMMM, yyyy"
-      placeholderText='  Select Month'
+      placeholderText='Select Month'
       owMonthYearPicker
        />
       </div>
-
-      {/* onClick function will set the state of showAddBudgetModal to true, which will open the modal, so that whenever we click on the show modal we'll see the pop-up to add a new budget */}
-      <Button variant='primary' onClick={()=> setShowAddBudgetModal(true)}> Add Buget </Button>
-      {/*this button will open the add expense modal with the uncategorized budget as default */}
-      <Button variant='outline-primary' onClick={OpenAddExpenseModal}> Add Expense </Button>
     </Stack>
 
+    <div  className='p-5'>
+    <TotalBudgetCard/>
+    </div>
 
     <div id = "grid-container">
       {/* TO-DO: Create a separate component for the BudgetCard */}
@@ -62,7 +60,8 @@ function App() {
         //this function will take all the expenses, add all the amounts together, and return the total amount of expenses for a specific budget/category
         const amount = getBudgetsExpenses(budget.id).reduce((total, expense) => total + expense.amount, 0)
 
-        return(
+        return(  
+
         <BudgetCard 
         //we need to pass in the budget id so that we can open the view expenses modal for a specific budget      
           key={budget.id}
@@ -84,9 +83,17 @@ function App() {
      onAddExpenseClick={OpenAddExpenseModal}
      onViewExpenseClick={() => setViewExpensesBudgetId(uncategorizedBudgetId)}
      />
-      <TotalBudgetCard />
+  
+
       
     </div>
+    <Stack direction='horizontal' gap='2' className='mt-5 d-flex justify-content-center p-3'>
+      {/* onClick function will set the state of showAddBudgetModal to true, which will open the modal, so that whenever we click on the show modal we'll see the pop-up to add a new budget */}
+      <Button id='bttn-category'className='p-3' variant='primary' onClick={()=> setShowAddBudgetModal(true)}> Add Category </Button>
+      {/*this button will open the add expense modal with the uncategorized budget as default */}
+      <Button id='bttn-category' className='p-3' variant='outline-primary' onClick={OpenAddExpenseModal}> Add Expense </Button>
+    </Stack>
+
   </Container>
   {/* By default, the budget and expense modals are closed, so we won't see it until we click on the buttons to open it */}
   <AddBudget 
@@ -101,7 +108,9 @@ function App() {
   <ViewExpenses 
     budgetId={viewExpensesBudgetId} 
     handleClose={() => setViewExpensesBudgetId()}/>
-  </>
+
+  </div>
+
   )
 }
 

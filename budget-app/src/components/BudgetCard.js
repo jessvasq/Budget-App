@@ -46,13 +46,15 @@ export default function BudgetCard({
               now={amount}
               />
             )}
-            
+
             {/* if hideButtons is false, we'll render the buttons */}
             {!hideButtons && (
+              <div className='d-flex justify-content-end'>
               <Stack direction='horizontal' gap='2' className='mt-4'>
-                <Button variant='outline-primary' className='ms-auto' onClick={onAddExpenseClick}> Add Expenses</Button>
-                <Button variant='outline-secondary' className='ms-auto' onClick={onViewExpenseClick}>View Expenses</Button>
+                <Button id='card-bttn' variant='outline-primary' className='ms-auto' onClick={onAddExpenseClick}> Add Expenses</Button>
+                <Button id='card-bttn' variant='outline-secondary' className='ms-auto' onClick={onViewExpenseClick}>View Expenses</Button>
               </Stack>
+              </div>
             )}
         </CardBody>
     </Card>
@@ -61,7 +63,7 @@ export default function BudgetCard({
 
 const getProgressBarVariant=(amount, max) => {
   const ratio = amount/max;
-  if (ratio < 0.5) return 'primary';
+  if (ratio < 0.5) return 'success';
   if (ratio < 0.75) return 'warning';
   return 'danger';
 }

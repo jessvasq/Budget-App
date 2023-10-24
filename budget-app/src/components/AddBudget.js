@@ -27,7 +27,7 @@ export default function AddBudget({  show, handleClose }) {
         <Modal show={show} onHide={handleClose}>
             <Form onSubmit={handleSubmit}>
                 <Modal.Header closeButton>
-                    <Modal.Title> Add Budget </Modal.Title>
+                    <Modal.Title > Add Budget </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {/* We'll use Form to add budget */}
@@ -41,7 +41,7 @@ export default function AddBudget({  show, handleClose }) {
                         <Form.Control ref= {maxRef} type='number' placeholder='Enter max' requiredmin={0} step={.01}/>
                     </Form.Group>
                     <div className='d-flex justify-content-end'>
-                        <Button variant='primary' type='submit'> Add Budget </Button>
+                        <Button  id='card-bttn' variant='primary' type='submit'> Add Budget </Button>
                         <Button variant='secondary' onClick={handleClose}> Cancel </Button>
                     </div>
                 </Modal.Body>
