@@ -23,11 +23,21 @@ export default function BudgetCard({
 
   return (
     <Card className={classNames.join(' ')}>
-        <CardBody>
-            <CardTitle className='d-flex justify-content-between align-items-baseline fw-normal mb-3'>
-                <div className='me-2'>{name}</div>
-                {/* we'll use a function to format the inpu to dollars. */}
-                <div className='d-flex align-items-baseline'>
+        <CardBody >
+          <CardTitle >
+          <div id='category-title'>{name}</div>
+          <div className='d-flex justify-content-end align-items-baseline fw-normal mb-3'>
+                  <h6 id ='sub-title'>EXPENSES</h6>
+                   <span id ='sub-title' className='text-muted fs-6 ms-1'>
+                      / BUDGET
+                    </span>
+                    
+                </div>
+          </CardTitle>
+    
+            <CardTitle className='d-flex justify-content-end align-items-baseline fw-normal mb-3'>
+       
+                <div >
                   {currencyFormatter.format(amount)} 
                   {/* if there's a max, we'll display the max */}
                     {max && (

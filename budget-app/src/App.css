@@ -18,20 +18,23 @@ input{
   border: none;
   border-bottom: 1px solid;
   padding: 6px;
-  border-radius: 10px;
+  border-radius: 4px;
+  background-color: #1B1F3B;
+  color: white;
 }
 
 #body1 {
   background-color: #1B1F3B;
-  height: 100vh;
+  height: 1000vh;
 }
 
 #bttn-category {
-  background-color: #F58F29;
+  background-color: #5F7470;
   border: none;
   text-transform: uppercase;
   color: white;
   font-weight: bold;
+  margin-right: 10px;
 }
 
 #bttn-category:hover {
@@ -52,10 +55,36 @@ input{
   border: solid 1px grey;
   color: black;
   background-color: white;
+  margin-right: 8px;
 }
 
 #card-bttn:hover { 
   border: solid 1px grey;
   background-color:  #5F7470; 
   color: white;
+}
+
+#delete-bttn{
+  font-size: 12px;
+  padding: 4px;
+}
+
+#category-title{
+  margin: 0px 0px -25px 10px;
+}
+
+#sub-title{
+  /* font-size: 10px; */
+  margin-bottom: -20px;
+  font-weight: 200;
+  font-weight: 10px;
+}
+
+#total-card{
+  background-color: #5F7470;
+}
+
+#expenses-desc {
+  font-size: 20px;
+  font-weight: 300;
 }

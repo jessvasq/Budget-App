@@ -27,18 +27,18 @@ export default function AddBudget({  show, handleClose }) {
         <Modal show={show} onHide={handleClose}>
             <Form onSubmit={handleSubmit}>
                 <Modal.Header closeButton>
-                    <Modal.Title > Add Budget </Modal.Title>
+                    <Modal.Title > ADD BUDGET </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {/* We'll use Form to add budget */}
                     <Form.Group className = 'mb-3' controlId='name'>
-                        <Form.Label> Category </Form.Label>
+                        <Form.Label> CATEGORY </Form.Label>
                         {/* User's input */}
                         <Form.Control ref= {nameRef} type='text' placeholder='Enter category' required />
                     </Form.Group>
                     <Form.Group className='mb-3' controlId='max-spending'>
-                        <Form.Label> Max Spending </Form.Label>
-                        <Form.Control ref= {maxRef} type='number' placeholder='Enter max' requiredmin={0} step={.01}/>
+                        <Form.Label> BUDGET </Form.Label>
+                        <Form.Control ref= {maxRef} type='number' placeholder='Enter $ Amount' requiredmin={0} step={.01}/>
                     </Form.Group>
                     <div className='d-flex justify-content-end'>
                         <Button  id='card-bttn' variant='primary' type='submit'> Add Budget </Button>

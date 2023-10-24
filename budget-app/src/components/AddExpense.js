@@ -32,23 +32,23 @@ export default function AddExpense({
         <Modal show={show} onHide={handleClose}>
             <Form onSubmit={handleSubmit}>
                 <Modal.Header closeButton>
-                    <Modal.Title> Add Expense </Modal.Title>
+                    <Modal.Title> ADD EXPENSE </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {/* We'll use Form to add Expense */}
                     <Form.Group className = 'mb-3' controlId='description'>
-                        <Form.Label> Description </Form.Label>
+                        <Form.Label> DESCRIPTION </Form.Label>
                         {/* User's input */}
                         <Form.Control ref= {descriptionRef} type='text' placeholder='Enter description' required />
                     </Form.Group>
 
                     <Form.Group className='mb-3' controlId='amount'>
-                        <Form.Label> Amount </Form.Label>
+                        <Form.Label> AMOUNT</Form.Label>
                         <Form.Control ref= {amountRef} type='number' placeholder='Enter amount' requiredmin={0} step={0.01}/>
                     </Form.Group>
 
                     <Form.Group className='mb-3' controlId='budgetId'>
-                        <Form.Label> Budget </Form.Label>
+                        <Form.Label> CATEGORY </Form.Label>
                         <Form.Select defaultValue={defaultBudgetId} ref= {budgetIdRef}>
                             {/* we'll add an option for uncategorized expenses */}
                             <option id={uncategorizedBudgetId}>uncategorized</option>

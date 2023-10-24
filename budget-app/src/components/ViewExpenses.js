@@ -19,14 +19,8 @@ export default function ViewExpenses({ budgetId, handleClose }) {
                     <Modal.Title>
                         {/* if the budgetId is uncategorized, we'll return 'uncategorized'. If it's not uncategorized, we'll return the name of the budget */}
                         <Stack direction='horizontal' gap='2'>
-                            <div>Expenses - {budget?.name}</div>
-
-                            {budgetId !== uncategorizedBudgetId && (
-                                <Button onClick={() => {
-                                    deleteBudget(budget)
-                                    handleClose()}}
-                                    variant='outline-danger'>Delete</Button>
-                            )}
+                            <div> VIEW EXPENSES - {budget?.name}</div> <br/>
+                           
                         </Stack>
                     </Modal.Title>
                 </Modal.Header>
@@ -35,7 +29,7 @@ export default function ViewExpenses({ budgetId, handleClose }) {
                     <Stack direction='vertical' gap='3'>
                         {expenses.map(expense => (
                             <Stack direction='horizontal' gap='2' key={expense.id}>
-                                <div className='me-auto fs-4'>{expense.description}</div>
+                                <div id='expenses-desc' className='me-auto'>{expense.description}</div>
                                 <div className='fs-5'>{currencyFormatter.format(expense.amount)}</div>
                                 {/* we'll add an onClick function to the delete button that will call the deleteExpense function and pass in the expense */}
                                 <Button onClick={() => deleteExpense(expense)} size='sm' variant='outline-danger'>
@@ -45,6 +39,16 @@ export default function ViewExpenses({ budgetId, handleClose }) {
                         ))}
                     </Stack>
                 </Modal.Body>
+                <Modal.Footer>
+                <div>
+                            {budgetId !== uncategorizedBudgetId && (
+                                <Button id='delete-bttn' onClick={() => {
+                                    deleteBudget(budget)
+                                    handleClose()}}
+                                    variant='danger'>Delete Category</Button>    
+                            )}
+                </div>
+                </Modal.Footer>
         </Modal>
   )
 };
