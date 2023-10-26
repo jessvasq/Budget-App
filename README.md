@@ -27,5 +27,6 @@ The app is still in progress. Expense analytics, financial goal setting, and exp
 ## WIREFRAME
 ![Budget-app-5](https://github.com/jessvasq/Budget-App/assets/119137671/9ed95aa4-01d7-4fed-af12-4a705ab71ce7)
 
-
+### Credits ###
+https://www.youtube.com/watch?v=yz8x71BiGXg 
 
